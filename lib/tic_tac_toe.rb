@@ -2,7 +2,6 @@ require 'pry'
 class TicTacToe
   
   WIN_COMBINATIONS = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[6,4,2]]
-  #@winner = " "
   
   def initialize
     @board = Array.new(9," ")
@@ -45,7 +44,6 @@ class TicTacToe
       move(index,current_player)
       display_board
     else
-      #puts "Please enter 1 - 9"
       turn
     end
   end
@@ -97,7 +95,6 @@ class TicTacToe
    if won? == false
      nil
    else 
-    # @board[won?[0]]
     @winner
    end
   end
@@ -114,6 +111,3 @@ class TicTacToe
   end
 
 end
-
-#my_game = TicTacToe.new
-#my_game.input_to_index("5")
