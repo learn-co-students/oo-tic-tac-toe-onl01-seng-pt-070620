@@ -79,6 +79,22 @@ def turn_count
 end
 
 def won?
+   WIN_COMBINATIONS.each do |winning_combo|
+     i = 0
+     while i < WIN_COMBINATIONS.length do
+       x = 0
+       WIN_COMBINATIONS[i].each do #for each winning sequence
+         hold_token = "X"
+         if @board[WIN_COMBINATIONS[i][x]] = hold_token
+           x+=1
+           #hold_token = @board[WIN_COMBINATIONS[i][x]]
+           #x += 1
+
+       #for each array of winning combinations
+       #check first position of board of first element in winning combinations
+       #save token, check next element of winning combo array and check to see
+       #if next element of board array with same token
+     end #do
 
 end
 
