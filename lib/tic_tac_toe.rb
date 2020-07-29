@@ -139,7 +139,6 @@ def play
     puts "Congratulations #{winner}!"
   elsif draw?
     puts "Cat's Game!"
-    binding.pry
    end
   end
 end
