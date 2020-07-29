@@ -79,27 +79,58 @@ def turn_count
 end
 
 def won?
-   WIN_COMBINATIONS.each do |winning_combo|
-     i = 0
-     while i < WIN_COMBINATIONS.length do
-       x = 0
-       WIN_COMBINATIONS[i].each do #for each winning sequence
-         hold_token = "X"
-         if @board[WIN_COMBINATIONS[i][x]] = hold_token
-           x+=1
-           #hold_token = @board[WIN_COMBINATIONS[i][x]]
-           #x += 1
-
-       #for each array of winning combinations
-       #check first position of board of first element in winning combinations
-       #save token, check next element of winning combo array and check to see
-       #if next element of board array with same token
+   WIN_COMBINATIONS.detect do |winning_combo|
+    #binding.pry
+     @board[winning_combo[0]] != " " && @board[winning_combo[0]] == @board[winning_combo[1]] && @board[winning_combo[1]] == @board[winning_combo[2]]
      end #do
+end
 
+def full?
+  if @board.include?(" ")
+    #binding.pry
+    return false
+  else
+    #binding.pry
+    return true
+  end
 end
 
 def current_player
   turn_count % 2 == 0? "X": "O"
 end
 
+def draw?
+  if full? && !won?
+    true
+  else won? || (!full? && !won?)
+    false
+  end #if
 end
+
+def over?
+  full? || won?
+end
+
+def winner
+  if won?.is_a?(Array)
+    winner = @board[won?[0]]
+  else
+    nil
+  end
+end
+
+def play
+  until over? || draw?
+    #binding.pry
+    turn
+  end
+  if won?
+    puts "Congratulations #{winner}!"
+  else
+    puts "Cat's Game!"
+  end
+end
+
+end
+
+#binding.pry
