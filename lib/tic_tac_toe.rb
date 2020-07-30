@@ -82,8 +82,9 @@ class TicTacToe
     current_player
   end
   
-  def won?
+  def won?(board)
     WIN_COMBINATIONS.each do |combo|
+         
     end
   end
   
