@@ -65,42 +65,42 @@ class TicTacToe
   end
 
 
-  def won? 
-    WIN_COMBINATIONS.detect do|winner|
-      @board[winner[0]] == @board[winner[1]] &&
-      @board[winner[1]] == @board[winner[2]] &&
-     (@board[winner[0]] == "X" ||  @board[winner[0]] == "O") 
-    end
-  end
+  # def won? 
+  #   WIN_COMBINATIONS.detect do|winner|
+  #     @board[winner[0]] == @board[winner[1]] &&
+  #     @board[winner[1]] == @board[winner[2]] &&
+  #   (@board[winner[0]] == "X" ||  @board[winner[0]] == "O") 
+  #   end
+  # end
   
-  def full?
-    @board.all? {|occupied| occupied != " "}
-  end
+  # def full?
+  #   @board.all? {|occupied| occupied != " "}
+  # end
   
-  def draw?
-    !(won?) && (full?)
-  end
+  # def draw?
+  #   !(won?) && (full?)
+  # end
   
-  def over?
-    (won?) || (full?)
-  end
+  # def over?
+  #   (won?) || (full?)
+  # end
   
-  def winner
-    if winning_combo = won?
-      @winner = @board[winning_combo.first] 
-    end
-  end
+  # def winner
+  #   if winning_combo = won?
+  #     @winner = @board[winning_combo.first] 
+  #   end
+  # end
   
-  def play
-      until over?
-      turn
-    end
-    if won?
-      puts "Congratulations #{winner}!"
-    draw?
-      puts "ended in draw"
-    end
-  end
+  # def play
+  #     until over?
+  #     turn
+  #   end
+  #   if won?
+  #     puts "Congratulations #{winner}!"
+  #   draw?
+  #     puts "ended in draw"
+  #   end
+  # end
   
 end
 
