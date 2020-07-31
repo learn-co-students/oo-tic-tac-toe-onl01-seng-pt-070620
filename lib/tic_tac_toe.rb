@@ -1,3 +1,4 @@
+
 require 'pry'
 
 class TicTacToe
@@ -73,7 +74,7 @@ class TicTacToe
     user_input = gets
     index = input_to_index(user_input)
     if valid_move?(index)
-      move(index, token="X")
+      move(index, token = "X")
       display_board
     else
       puts "Invalid selection, please choose again:"
@@ -82,9 +83,52 @@ class TicTacToe
     current_player
   end
   
-  def won?(board)
+  def won?
     WIN_COMBINATIONS.each do |combo|
-         
+      #binding.pry
+      if ("X" == @board[combo[0]] && "X" == @board[combo[1]] && "X" == @board[combo[2]]) || ("O" == @board[combo[0]] && "O" == @board[combo[1]] && "O" == @board[combo[2]])
+        return combo
+      end
+    end
+    false 
+  end
+  
+  def full?
+    @board.all?{|square| square == "X" || square == "O"}
+  end
+  
+  def draw?
+    if !won? && full?
+      true 
+    elsif won?
+      false
+    else !won? && !full?
+      false
+    end
+  end
+  
+  def over?
+    if draw? || full?
+      true
+    end
+  end
+  
+  def winner
+    if won?
+      return board[won?[0]]
+   end
+  end
+  
+  def play
+    until over?
+      turn
+    end
+    
+    if won?
+      winner == "X" || winner == "O" 
+        puts "Congratulations #{winner}!" 
+    elsif draw?
+        puts "Cat's Game!" 
     end
   end
   
