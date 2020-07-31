@@ -29,7 +29,7 @@ class TicTacToe
   end
   
   def input_to_index(string)
-  Integer(string) - 1  
+    string.to_i - 1 
   end
   
   def move(index, token = "X")
@@ -49,11 +49,60 @@ class TicTacToe
   end
   
   def current_player
-    
+    turn_count % 2 ==0? "X":"O"
+  end
+
+  def turn
+    puts "Please enter a number between 1 and 9."
+    num = gets.strip 
+    index = input_to_index(num)
+      if valid_move?(index)
+        move(index, current_player)
+        display_board
+      else
+      turn
+    end
   end
 
 
+  def won? 
+    WIN_COMBINATIONS.detect do|winner|
+      @board[winner[0]] == @board[winner[1]] &&
+      @board[winner[1]] == @board[winner[2]] &&
+     (@board[winner[0]] == "X" ||  @board[winner[0]] == "O") 
+    end
   end
+  
+  def full?
+    @board.all? {|occupied| occupied != " "}
+  end
+  
+  def draw?
+    !(won?) && (full?)
+  end
+  
+  def over?
+    (won?) || (full?)
+  end
+  
+  def winner
+    if winning_combo = won?
+      @winner = @board[winning_combo.first] 
+    end
+  end
+  
+  def play
+      until over?
+      turn
+    end
+    if won?
+      puts "Congratulations #{winner}!"
+    draw?
+      puts "ended in draw"
+    end
+  end
+  
+end
 
 
 
