@@ -31,7 +31,7 @@ class TicTacToe
     user_input.to_i - 1 
   end
   
-  def move(index, token="X")
+  def move(index, token)
     @board[index] = token
   end
   
@@ -74,13 +74,12 @@ class TicTacToe
     user_input = gets
     index = input_to_index(user_input)
     if valid_move?(index)
-      move(index, token = "X")
-      display_board
+      move(index, current_player)
     else
       puts "Invalid selection, please choose again:"
       user_input = gets
     end
-    current_player
+    display_board
   end
   
   def won?
@@ -108,9 +107,10 @@ class TicTacToe
   end
   
   def over?
-    if draw? || full?
-      true
+    if won? || draw? || full?
+     return true
     end
+    false 
   end
   
   def winner
