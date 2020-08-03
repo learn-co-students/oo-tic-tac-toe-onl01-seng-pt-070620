@@ -71,15 +71,49 @@ class TicTacToe
     # return f/nil if no win combo is present at all 
     #return winning combo as an array if there is a win
     #ennumerate over constant, see if that is present and return it 
-     if @board.include?(WIN_COMBINATIONS)
-       nil
-      else WIN_COMBINATIONS.find do |winner|
-       @board[winner[0]]
+      WIN_COMBINATIONS.find do |winner|
+       @board[winner[0]] == @board[winner[1]] &&
+       @board[winner[0]] == @board[winner[2]] &&
+       position_taken?(winner[1])
      end 
    end 
+   
+   def full?
+     # look at elements in @board and see if they contain either "X" or O
+     # " " should not be on the board 
+     @board.all? {|element| element != " "}
+   end 
+   
+   def draw? 
+     full? && !won?  
+   end 
+   
+   def over?
+     won? || draw? 
+   end 
+   
+   def winner
+      if winner = won?
+       @board[winner[2]]
+      end 
+   end 
+   
+   def play
+     while !over? 
+      turn 
+     end 
+     
+     if won? 
+       puts "Congratulations #{winner}!"
+     else draw?
+       puts "Cat's Game!"
+     end 
+     #check if game is not over (!= over)
+     
+   end
      
  
-  end 
+  
   
   
   
