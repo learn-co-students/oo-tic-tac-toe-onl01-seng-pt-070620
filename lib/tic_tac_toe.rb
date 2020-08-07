@@ -1,7 +1,11 @@
 require 'pry'
 class TicTacToe
   @@turns = 0
+  # MUST CHANGE ONE OF THESE
   attr_accessor :board, :winner_token
+  # attr_accessor :board, :last_move
+  # ######################
+  
   WIN_COMBINATIONS = [[0, 1, 2], #top row across
                       [3, 4, 5], #middle row across
                       [6, 7, 8], #bottom row across
@@ -71,10 +75,19 @@ class TicTacToe
   end
   
   def won?
+# <<<<<<< HEAD
     WIN_COMBINATIONS.each do |win|
       # binding.pry
       if @board[win[0]] == @board[win[1]] && @board[win[1]] == @board[win[2]] && @board[win[0]] != " "
         @winner_token = @board[win[0]]
+# =======
+#     WIN_COMBINATIONS.each_with_index do |win, i|
+#       # binding.pry
+#       if @board[win[0]] == @board[win[1]] && @board[win[1]] == @board[win[2]]
+#         @current_player = @board[win[0]]
+#         # binding.pry
+#         puts "Congratulations #{@current_player}!"
+# >>>>>>> 868d5bd1305eb4b4b838e39258e8d69e94fbf60f
         return win
       end
     end
@@ -101,10 +114,17 @@ class TicTacToe
   
   def winner
     if over?
+# <<<<<<< HEAD
       if @winner_token == " "
         return nil
       end
       @winner_token
+# =======
+#       if @current_player == " "
+#         return nil
+#       end
+#       @current_player
+# >>>>>>> 868d5bd1305eb4b4b838e39258e8d69e94fbf60f
     end
   end
   
@@ -114,7 +134,12 @@ class TicTacToe
       if draw?
         puts "Cat's Game!"
       elsif won?
+# <<<<<<< HEAD
         puts "Congratulations #{@winner_token}!"
+# =======
+#         # binding.pry
+#         # puts "Congratulations #{current_player}!"
+# >>>>>>> 868d5bd1305eb4b4b838e39258e8d69e94fbf60f
       end
     end
   end
