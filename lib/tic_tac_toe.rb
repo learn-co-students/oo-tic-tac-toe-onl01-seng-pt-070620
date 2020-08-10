@@ -30,5 +30,37 @@ class TicTacToe
     input.to_i - 1
   end
 
+  def move(board, token = "X")
+    @board[board] = token
+  end
+
+  def position_taken?(index)
+    if !(@board[index] == " " || @board[index].nil?)  # Check for empty spaces
+      true
+    else
+      false
+    end
+  end
+
+  def valid_move?(move)
+
+    if move.between?(0, 8) && !position_taken?(move) #(@board[move] == " " || @board[move].nil?)
+      true
+    else
+      false
+    end
+  end
+
+  def turn_count
+    @board.count { |x| x == "X" || x == "O"}
+  end
+
+  def current_player
+    if turn_count.even?
+       "X"
+    else
+       "O"
+    end
+  end
 
 end
