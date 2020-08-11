@@ -63,4 +63,10 @@ class TicTacToe
     end
   end
 
+  def turn
+    valid_move?(input_to_index(gets))
+    current_player
+    display_board
+  end
+
 end
