@@ -30,6 +30,73 @@ class TicTacToe
     str.to_i - 1
   end
 
+  def move(index, player)
+    @board[index] = player
+  end
+
+  def position_taken?(index)
+    @board[index] == "X" ||
+    @board[index] == "O"
+  end
+
+  def valid_move?(index)
+    index.between?(0,8) &&
+    !position_taken?(index)
+  end
+
+  def turn_count
+    turns = 0
+    @board.each do |token|
+      if token == "X" || token == "O"
+        turns += 1
+      end
+    end
+    turns
+  end
+
+  def current_player
+    if turn_count % 2 == 0
+      "X"
+    else
+      "O"
+    end
+  end
+
+  def turn
+    input = gets.strip
+    index = input_to_index(input)
+    cp = current_player
+    if valid_move?(index)
+      move(index, cp)
+      display_board
+    else
+      turn
+    end
+  end
+
+  def won?
+    WIN_COMBINATIONS.detect do |combo|
+      if @board[combo[0]] == "X" &&
+        @board[combo[1]] == "X" &&
+        @board[combo[2]] == "X"
+        combo
+      elsif @board[combo[0]] == "O" &&
+        @board[combo[1]] == "O" &&
+        @board[combo[2]] == "O"
+        combo
+      else
+        false
+      end
+    end
+  end
+
+  def full?
+    @board.all? {|mt| mt != " "}
+  end
+
+  def draw?
+    !won? && full?
+  end
 
 
 end
